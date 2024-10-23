@@ -367,3 +367,5 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,c,platformio,python,clion
 
+# output of `pio run -t compiledb`
+compile_commands.json
