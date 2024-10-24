@@ -84,16 +84,16 @@
  * @{
  */
 #if !defined(HSE_VALUE)
-    #define HSE_VALUE                                            \
-        ((uint32_t)8000000                                       \
-        ) /*!< Default value of the External oscillator in Hz. \ \
+    #define HSE_VALUE                                          \
+        ((uint32_t)8000000                                     \
+        ) /*!< Default value of the External oscillator in Hz. \
                This value can be provided and adapted by the user application. */
 #endif    /* HSE_VALUE */
 
 #if !defined(HSI_VALUE)
-    #define HSI_VALUE                                            \
-        ((uint32_t)8000000                                       \
-        ) /*!< Default value of the Internal oscillator in Hz. \ \
+    #define HSI_VALUE                                          \
+        ((uint32_t)8000000                                     \
+        ) /*!< Default value of the Internal oscillator in Hz. \
                This value can be provided and adapted by the user application. */
 #endif    /* HSI_VALUE */
 
@@ -109,18 +109,18 @@
          in Sram else user remap will be done in Flash. */
     /* #define VECT_TAB_SRAM */
     #if defined(VECT_TAB_SRAM)
-        #define VECT_TAB_BASE_ADDRESS                         \
-            SRAM_BASE /*!< Vector Table base address field. \ \
+        #define VECT_TAB_BASE_ADDRESS                       \
+            SRAM_BASE /*!< Vector Table base address field. \
                            This value must be a multiple of 0x200. */
-        #define VECT_TAB_OFFSET                                \
-            0x00000000U /*!< Vector Table base offset field. \ \
+        #define VECT_TAB_OFFSET                              \
+            0x00000000U /*!< Vector Table base offset field. \
                              This value must be a multiple of 0x200. */
     #else
-        #define VECT_TAB_BASE_ADDRESS                          \
-            FLASH_BASE /*!< Vector Table base address field. \ \
+        #define VECT_TAB_BASE_ADDRESS                        \
+            FLASH_BASE /*!< Vector Table base address field. \
                             This value must be a multiple of 0x200. */
-        #define VECT_TAB_OFFSET                                \
-            0x00000000U /*!< Vector Table base offset field. \ \
+        #define VECT_TAB_OFFSET                              \
+            0x00000000U /*!< Vector Table base offset field. \
                              This value must be a multiple of 0x200. */
     #endif              /* VECT_TAB_SRAM */
 #endif                  /* USER_VECT_TAB_ADDRESS */
