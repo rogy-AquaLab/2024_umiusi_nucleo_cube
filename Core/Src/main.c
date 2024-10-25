@@ -114,7 +114,19 @@ int main(void) {
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    char message[] = "Hello World!\r\n";
     while (1) {
+        HAL_Delay(1000);
+
+        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1);
+
+        HAL_StatusTypeDef result
+            = HAL_UART_Transmit(&huart2, (uint8_t*)message, sizeof(message), 500);
+        if (result != HAL_OK) {
+            Error_Handler();
+        }
+        while (HAL_UART_GetState(&huart2) != HAL_UART_STATE_READY) {
+        }
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
