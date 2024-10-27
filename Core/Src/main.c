@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "main.h"
+#include "serial.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -125,7 +126,7 @@ int main(void) {
     /* USER CODE BEGIN WHILE */
     char tx_message[] = "Hello World!\r\n";
     // start receiving
-    HAL_UART_Receive_DMA(&huart2, (uint8_t*)rx_buffer, 1);
+    uart_receive_dma(&huart2);
     while (1) {
         HAL_Delay(1000);
 
@@ -133,6 +134,15 @@ int main(void) {
             = HAL_UART_Transmit_DMA(&huart2, (uint8_t*)tx_message, strlen(tx_message));
         if (result != HAL_OK) {
             Error_Handler();
+        }
+
+        switch (gen_signal()) {
+        case ON:     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET); break;
+        case OFF:    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET); break;
+        case TOGGLE: HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1); break;
+        case NONE:
+            /* do nothing */
+            break;
         }
         /* USER CODE END WHILE */
 
@@ -614,10 +624,9 @@ static void MX_GPIO_Init(void) {
 /* USER CODE BEGIN 4 */
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1);
     if (huart->Instance == USART2) {
         // handle rx_buffer
-        HAL_UART_Receive_DMA(&huart2, (uint8_t*)rx_buffer, 1);
+        uart_rx_callback(huart);
     }
 }
 
