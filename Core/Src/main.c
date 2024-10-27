@@ -123,9 +123,17 @@ int main(void) {
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    char tx_message[] = "Hello World!\r\n";
     // start receiving
     HAL_UART_Receive_DMA(&huart2, (uint8_t*)rx_buffer, 1);
     while (1) {
+        HAL_Delay(1000);
+
+        const HAL_StatusTypeDef result
+            = HAL_UART_Transmit_DMA(&huart2, (uint8_t*)tx_message, strlen(tx_message));
+        if (result != HAL_OK) {
+            Error_Handler();
+        }
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
