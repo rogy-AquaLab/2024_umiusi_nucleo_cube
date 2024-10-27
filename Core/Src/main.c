@@ -21,6 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,6 +53,10 @@ TIM_HandleTypeDef htim17;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+
+#define adc1_buffer_size 256
+uint16_t adc1_buffer[adc1_buffer_size] = { 0 };
+uint16_t cplt_count = 0;
 
 /* USER CODE END PV */
 
@@ -112,11 +118,26 @@ int main(void) {
     MX_USART2_UART_Init();
     /* USER CODE BEGIN 2 */
 
+    HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc1_buffer, adc1_buffer_size);
+
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    char message[32] = { 0 };
     while (1) {
+        HAL_Delay(1000);
+        if (cplt_count > 0) {
+            HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1);
+        }
+        size_t message_len
+            = snprintf(message, sizeof(message), "cplt_count: %d\n", cplt_count);
+        const HAL_StatusTypeDef result
+            = HAL_UART_Transmit(&huart2, (uint8_t*)message, message_len, 1000);
+        if (result != HAL_OK) {
+            Error_Handler();
+        }
+        cplt_count = 0;
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
@@ -600,6 +621,12 @@ static void MX_GPIO_Init(void) {
 }
 
 /* USER CODE BEGIN 4 */
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
+    if (hadc == &hadc1) {
+        cplt_count++;
+    }
+}
 
 /* USER CODE END 4 */
 
