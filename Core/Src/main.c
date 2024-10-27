@@ -55,7 +55,7 @@ UART_HandleTypeDef huart2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void        SystemClock_Config(void);
+void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_TIM1_Init(void);
@@ -127,8 +127,8 @@ int main(void) {
  * @retval None
  */
 void SystemClock_Config(void) {
-    RCC_OscInitTypeDef       RCC_OscInitStruct = { 0 };
-    RCC_ClkInitTypeDef       RCC_ClkInitStruct = { 0 };
+    RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
     RCC_PeriphCLKInitTypeDef PeriphClkInit = { 0 };
 
     /** Initializes the RCC Oscillators according to the specified parameters
@@ -174,7 +174,7 @@ static void MX_ADC1_Init(void) {
 
     /* USER CODE END ADC1_Init 0 */
 
-    ADC_MultiModeTypeDef   multimode = { 0 };
+    ADC_MultiModeTypeDef multimode = { 0 };
     ADC_ChannelConfTypeDef sConfig = { 0 };
 
     /* USER CODE BEGIN ADC1_Init 1 */
@@ -286,9 +286,9 @@ static void MX_TIM1_Init(void) {
 
     /* USER CODE END TIM1_Init 0 */
 
-    TIM_ClockConfigTypeDef         sClockSourceConfig = { 0 };
-    TIM_MasterConfigTypeDef        sMasterConfig = { 0 };
-    TIM_OC_InitTypeDef             sConfigOC = { 0 };
+    TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
+    TIM_MasterConfigTypeDef sMasterConfig = { 0 };
+    TIM_OC_InitTypeDef sConfigOC = { 0 };
     TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = { 0 };
 
     /* USER CODE BEGIN TIM1_Init 1 */
@@ -363,9 +363,9 @@ static void MX_TIM2_Init(void) {
 
     /* USER CODE END TIM2_Init 0 */
 
-    TIM_ClockConfigTypeDef  sClockSourceConfig = { 0 };
+    TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
     TIM_MasterConfigTypeDef sMasterConfig = { 0 };
-    TIM_OC_InitTypeDef      sConfigOC = { 0 };
+    TIM_OC_InitTypeDef sConfigOC = { 0 };
 
     /* USER CODE BEGIN TIM2_Init 1 */
 
@@ -414,9 +414,9 @@ static void MX_TIM3_Init(void) {
 
     /* USER CODE END TIM3_Init 0 */
 
-    TIM_ClockConfigTypeDef  sClockSourceConfig = { 0 };
+    TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
     TIM_MasterConfigTypeDef sMasterConfig = { 0 };
-    TIM_OC_InitTypeDef      sConfigOC = { 0 };
+    TIM_OC_InitTypeDef sConfigOC = { 0 };
 
     /* USER CODE BEGIN TIM3_Init 1 */
 
@@ -471,7 +471,7 @@ static void MX_TIM17_Init(void) {
 
     /* USER CODE END TIM17_Init 0 */
 
-    TIM_OC_InitTypeDef             sConfigOC = { 0 };
+    TIM_OC_InitTypeDef sConfigOC = { 0 };
     TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = { 0 };
 
     /* USER CODE BEGIN TIM17_Init 1 */
