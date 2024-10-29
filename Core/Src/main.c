@@ -21,6 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "umiusi/machine.h"
+#include "umiusi/signal.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -117,12 +119,15 @@ int main(void) {
     MX_TIM17_Init();
     MX_USART2_UART_Init();
     /* USER CODE BEGIN 2 */
-
+    signal_init();
+    struct Machine machine = machine_init();
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
+        struct Signal signal = next_signal();
+        machine_handle_signal(&machine, &signal);
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
