@@ -61,6 +61,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define INIT_PIN_Pin GPIO_PIN_1
 #define INIT_PIN_GPIO_Port GPIOA
+#define DEBUG_LED_Pin GPIO_PIN_3
+#define DEBUG_LED_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

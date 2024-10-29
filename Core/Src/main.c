@@ -626,12 +626,22 @@ static void MX_GPIO_Init(void) {
     /*Configure GPIO pin Output Level */
     HAL_GPIO_WritePin(INIT_PIN_GPIO_Port, INIT_PIN_Pin, GPIO_PIN_RESET);
 
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, GPIO_PIN_RESET);
+
     /*Configure GPIO pin : INIT_PIN_Pin */
     GPIO_InitStruct.Pin = INIT_PIN_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(INIT_PIN_GPIO_Port, &GPIO_InitStruct);
+
+    /*Configure GPIO pin : DEBUG_LED_Pin */
+    GPIO_InitStruct.Pin = DEBUG_LED_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(DEBUG_LED_GPIO_Port, &GPIO_InitStruct);
 
     /* USER CODE BEGIN MX_GPIO_Init_2 */
     /* USER CODE END MX_GPIO_Init_2 */
