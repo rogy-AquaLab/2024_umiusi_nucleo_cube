@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -118,7 +118,27 @@ int main(void) {
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    char rx_buffer[1] = { 0 };
+    char* init_message = "Init\r\n";
+    while (HAL_UART_GetState(&huart2) != HAL_UART_STATE_READY) {
+    }
+    if (HAL_UART_Transmit(&huart2, (uint8_t*)init_message, strlen(init_message), 100)
+        != HAL_OK)
+    {
+        Error_Handler();
+    }
     while (1) {
+        while (HAL_UART_GetState(&huart2) != HAL_UART_STATE_READY) {
+        }
+        if (HAL_UART_Receive(&huart2, (uint8_t*)rx_buffer, 1, 100) != HAL_OK) {
+            continue;
+        }
+        if (HAL_IWDG_Refresh(&hiwdg) != HAL_OK) {
+            Error_Handler();
+        }
+        if (rx_buffer[0] == ' ') {
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
+        }
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
