@@ -20,7 +20,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f3xx_it.h"
 #include "main.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -56,6 +55,9 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern DMA_HandleTypeDef hdma_adc1;
+extern DMA_HandleTypeDef hdma_usart2_tx;
+extern DMA_HandleTypeDef hdma_usart2_rx;
 
 /* USER CODE BEGIN EV */
 
@@ -184,6 +186,45 @@ void SysTick_Handler(void) {
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f3xx.s).                    */
 /******************************************************************************/
+
+/**
+ * @brief This function handles DMA1 channel1 global interrupt.
+ */
+void DMA1_Channel1_IRQHandler(void) {
+    /* USER CODE BEGIN DMA1_Channel1_IRQn 0 */
+
+    /* USER CODE END DMA1_Channel1_IRQn 0 */
+    HAL_DMA_IRQHandler(&hdma_adc1);
+    /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
+
+    /* USER CODE END DMA1_Channel1_IRQn 1 */
+}
+
+/**
+ * @brief This function handles DMA1 channel6 global interrupt.
+ */
+void DMA1_Channel6_IRQHandler(void) {
+    /* USER CODE BEGIN DMA1_Channel6_IRQn 0 */
+
+    /* USER CODE END DMA1_Channel6_IRQn 0 */
+    HAL_DMA_IRQHandler(&hdma_usart2_rx);
+    /* USER CODE BEGIN DMA1_Channel6_IRQn 1 */
+
+    /* USER CODE END DMA1_Channel6_IRQn 1 */
+}
+
+/**
+ * @brief This function handles DMA1 channel7 global interrupt.
+ */
+void DMA1_Channel7_IRQHandler(void) {
+    /* USER CODE BEGIN DMA1_Channel7_IRQn 0 */
+
+    /* USER CODE END DMA1_Channel7_IRQn 0 */
+    HAL_DMA_IRQHandler(&hdma_usart2_tx);
+    /* USER CODE BEGIN DMA1_Channel7_IRQn 1 */
+    huart2.gState = HAL_UART_STATE_READY;
+    /* USER CODE END DMA1_Channel7_IRQn 1 */
+}
 
 /* USER CODE BEGIN 1 */
 
