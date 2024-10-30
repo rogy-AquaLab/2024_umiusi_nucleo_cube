@@ -64,12 +64,12 @@ static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
-static void MX_IWDG_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM17_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_IWDG_Init(void);
 
 /* USER CODE BEGIN PFP */
 
@@ -110,12 +110,12 @@ int main(void) {
     MX_DMA_Init();
     MX_ADC1_Init();
     MX_ADC2_Init();
-    MX_IWDG_Init();
     MX_TIM1_Init();
     MX_TIM2_Init();
     MX_TIM3_Init();
     MX_TIM17_Init();
     MX_USART2_UART_Init();
+    MX_IWDG_Init();
     /* USER CODE BEGIN 2 */
 
     /* USER CODE END 2 */
@@ -599,13 +599,13 @@ static void MX_DMA_Init(void) {
 
     /* DMA interrupt init */
     /* DMA1_Channel1_IRQn interrupt configuration */
-    HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
     /* DMA1_Channel6_IRQn interrupt configuration */
-    HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
     /* DMA1_Channel7_IRQn interrupt configuration */
-    HAL_NVIC_SetPriority(DMA1_Channel7_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(DMA1_Channel7_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(DMA1_Channel7_IRQn);
 }
 
